@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from "react";
+import "./App.css";
+import Create from "./components/create/Create";
+import AppRoutes from "./routes";
+import { GlobalProvider } from "./context/GlobalContext";
+import ViewPost from "./components/viewPost/ViewPost";
+import Search from "./components/search/Search";
 
 function App() {
+  const { createPost, viewPost, searchBox } = useContext(GlobalProvider);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {createPost && <Create />}
+      {viewPost && <ViewPost />}
+      {searchBox && <Search />}
+      <AppRoutes />
     </div>
   );
 }
